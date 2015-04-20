@@ -1,5 +1,7 @@
 # goverMap
 
+An interactive graph representation of the links in Czech politics. Work in progess.
+
 ## Cíl
 
 Vytvořit software pro mapování (klientelistických) vázev ve veřejném sektoru.
@@ -21,3 +23,8 @@ Okolo toho vytvoříme ekosystém drobných aplikací pro analýzu a zadávání
 1. Ukázková [workflow](workflow.md)
 1. Uživatelsky přívětivé rozhraní
 
+An interactive graph representation of the links in Czech politics. Work in progess.
+
+## Current progress
+
+- /data folder includes csv files for Neo4j import
