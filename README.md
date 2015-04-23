@@ -21,5 +21,16 @@ Okolo toho vytvoříme ekosystém drobných aplikací pro analýzu a zadávání
 1. Ukázková [workflow](workflow.md)
 1. Uživatelsky přívětivé rozhraní
 
+### TODO
+
+- nasadit na server - OP
+- upravit data ohledně městských firem - OP
+- sada skriptů v Pythonu na filtraci csv
+  - ořezávání titulů - DR
+  - doplnění bilých míst - DR
+- workflows - DR
+- schema - DR 
+- docker na Macu - DR
+
 An interactive graph representation of the links in Czech politics. Work in progess.
 
