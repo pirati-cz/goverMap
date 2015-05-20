@@ -39,8 +39,11 @@
 
 ### Institution
 
+- name
 - type: firma, prispevkovka, ver. korporace
 - ico (unique)
 - address
 
+### Organ
 
+- name
