@@ -1,6 +1,7 @@
 Examples of workflows:
 
 MATCH - matches a pattern, needs to be followed by RETURN
+
 LIMIT - limits the number of results if there is a large number
 
 Find all relationships of a person:
