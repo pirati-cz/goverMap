@@ -1,17 +1,26 @@
 
 # Schema
 
-## Nodes
+## Nodes and their properties
 
-- Institution (including companies)
-- Organ
 - Person
+  - name
+  - contact
+- Institution (including companies)
+  - name
+  - type: firma, prispevkovka, ver. korporace
+  - ico (unique)
+  - address
+- Organ
+  - name
 
-## Edges
+## Edges and their properties
 
 - CONNECTION (Person->Person)
 - OWNS (Person->Institution)
+  - time period
 - MEMBER_OF (Person->Organ)
+  - time period
 - PART_OF (Organ->Institution)
 
 
@@ -31,19 +40,5 @@
 
 ```
 
-## Properties
 
-### Person
-- name
-- contact
 
-### Institution
-
-- name
-- type: firma, prispevkovka, ver. korporace
-- ico (unique)
-- address
-
-### Organ
-
-- name
