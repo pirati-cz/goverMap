@@ -2,24 +2,14 @@
 goverMap
 ========
 
-En: An interactive graph representation of the links in Czech politics. Work in progess.
 
-
-
-Cíl
----
-
-Vytvořit software pro mapování (klientelistických) vazeb ve veřejném sektoru. 
-
+Software pro mapování (klientelistických) vazeb ve veřejném sektoru. 
 
 
 Analýza konkurence
 ------------------
 
 [NFPK][] využívá [IBM analysts][ibm] napojen na databázi [Bisnode Magnusweb][bisnode].
-
-IBM analysts
-
 
 
 Technicky
@@ -82,24 +72,21 @@ Pro snadnou a rychlou práci vytváříme sadu skriptů, která usnadní běžn�
 goverm find "DPP a. s."
 ```
 
+Instalace
+---------
+
+Instrukce jsou v [samostatném souboru](install.md).
+
 
 Roadmap
 -------
 
 1. Vytvořit [schéma](schema.md) (ontologii)
-1. Ukázková [workflow](workflow.md)
-1. Uživatelsky přívětivé rozhraní (sada skriptů a návodů).
+2. Ukázková [workflow](workflow.md) (best practise)
+3. Uživatelsky přívětivé rozhraní (sada skriptů, návodů, webová rozhraní).
+4. Agilně vylepšovat
 
-
-### TODO
-
-- upravit data ohledně městských firem - OP
-- časové určení vazby
-- sada skriptů v Pythonu na filtraci csv
-    - ořezávání titulů - DR
-    - doplnění bilých míst - DR
-    - vložení uzlu - DR
-    - vložení vazby - DR
+Vše je evidováno v rámci [issues](https://github.com/pirati-cz/goverMap/issues)
 
 
 [rhmplist]: files/rhmp-list.png
