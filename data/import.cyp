@@ -6,11 +6,11 @@ CREATE CONSTRAINT ON (p:Institution) ASSERT p.name IS UNIQUE
 // Zastupitelstvo
 CREATE (zhmp:Institution {name: "Zastupitelstvo Hl. M. Prahy"})
 
-LOAD CSV WITH HEADERS FROM "file:///Users/Daneeq/Dropbox/pirati/personalni_mapa/data/zastupitele_praha.csv" AS line
-MATCH (zhmp:Organ {name: "Zastupitelstvo Hl. M. Prahy"})
+LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/pirati-cz/goverMap/master/data/zastupitele_praha.csv" AS line
+MATCH (zhmp:Institution {name: "Zastupitelstvo Hl. M. Prahy"})
 MERGE (u:Person { name: line.Jméno, contact: line.Kontakt})-[:MEMBER_OF {role: "zastupitel"}]->(zhmp)
 
-LOAD CSV WITH HEADERS FROM "file:///Users/Daneeq/Dropbox/pirati/personalni_mapa/data/zastupitele_praha.csv" AS line
+LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/pirati-cz/goverMap/master/data/zastupitele_praha.csv" AS line
 MATCH (u:Person { name: line.Jméno})
 MERGE (p:Party {name:line.Strana})
 MERGE (u)-[:MEMBER_OF {role: "člen"}]->(p)

@@ -1,35 +1,44 @@
 
 # Schema
 
-## Nodes
+## Nodes and their properties
 
-- Institution
-- Organ
 - Person
+  - name
+  - contact
+- Institution (including companies)
+  - name
+  - type: firma, prispevkovka, ver. korporace
+  - ico (unique)
+  - address
+- Organ
+  - name
 
-## Edges
+## Edges and their properties
 
-- CONNECTION
-- OWNS
-- MEMBER_OF
-- PART_OF
+- CONNECTION (Person->Person)
+- OWNS (Person->Institution)
+  - time period
+- MEMBER_OF (Person->Organ)
+  - time period
+- PART_OF (Organ->Institution)
 
 
 ## Examples of nodes and edges
 
 ```
- 
+ # Zastupitelstvo hl. m. Prahy
+ CREATE (zhmp:Institution {name: "Zastupitelstvo Hl. M. Prahy"})
+
+ # Ondřej Profant jako člen zastupitelstva
+ CREATE (op:Person {name: "Ondřej Profant", contact:"ondrej.profant@praha.eu"})
+ CREATE (op)-[:MEMBER_OF {role: "člen"}]->(zhmp)
+
+ # jako člen strany
+ CREATE (p:Institution {name: "Piráti", type:"strana"})
+ CREATE (op)-[:MEMBER_OF {role: "člen"}]->(p)
 
 ```
 
-## Properties of person
-
-- name surname
-
-## Properties of institution
-
-- type: firma, prispevkovka, ver. korporace
-- ico (unique)
-- address
 
 
