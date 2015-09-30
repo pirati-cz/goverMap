@@ -15,7 +15,7 @@ swap = True
 
 
 inFileName = sys.argv[1]
-outFileName = 'titles_removed.csv'
+outFileName = 'titles_removed.csv' #TODO allow command line input, overwrite, or relative name
 
 inFile = open(inFileName,'r')
 outFile = open(outFileName,'w')
@@ -29,7 +29,7 @@ try:
 
     for row in reader:   # iterates the rows of the file in orders
 
-        name = row['Jméno']
+        name = row['Jméno'] #TODO make more general
         
         match = reg.search(name)
 
