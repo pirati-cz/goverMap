@@ -2,24 +2,14 @@
 goverMap
 ========
 
-En: An interactive graph representation of the links in Czech politics. Work in progess.
 
-
-
-Cíl
----
-
-Vytvořit software pro mapování (klientelistických) vazeb ve veřejném sektoru. 
-
+Software pro mapování (klientelistických) vazeb ve veřejném sektoru. 
 
 
 Analýza konkurence
 ------------------
 
 [NFPK][] využívá [IBM analysts][ibm] napojen na databázi [Bisnode Magnusweb][bisnode].
-
-IBM analysts
-
 
 
 Technicky
@@ -34,8 +24,6 @@ Okolo toho vytvoříme ekosystém drobných aplikací (sktiptů) pro analýzu a 
 Ukázky
 ------
 
-### Celkový pohled
-
 Celkový pohled, de facto ukázka možností DB.
 Samozřejmě takto obecný dotaz je již z podstaty věci nepřehledný.
 
@@ -48,7 +36,7 @@ Doraz vrátí všechny uzly, nejvýše však 150.
 ![ZHMP][zhmpgraf]
 
 
-### Členové RHMP
+Členové RHMP:
 
 ```cypher
 MATCH (p:Person),(o:Organ {name: "Rada Hl. M. Prahy"}) WHERE p-->o RETURN p,o
@@ -60,6 +48,21 @@ A druhý typ zobrazení:
 
 ![ZHMP graph][rhmplist]
 
+Popřípadě najdeme členy *finančního výboru*, kteří jsou zároveň členy *zastupitelstva*:
+
+```
+MATCH (p:Person),(v:Organ {name: "Výbor finanční ZHMP"}),(z:Institution {name: "Zastupitelstvo Hl. M. Prahy"}) WHERE p-->v AND p-->z RETURN p,v
+```
+
+![členi finančního výboru, kteří jsou zároveň členy zastupitelstva][fv+zhmp]
+
+a členy *finančního výboru*, kteří zároveň **nejsou** členy *zastupitelstva*:
+
+```
+MATCH (p:Person),(v:Organ {name: "Výbor finanční ZHMP"}),(z:Institution {name: "Zastupitelstvo Hl. M. Prahy"}) WHERE p-->v AND NOT p-->z RETURN p,v
+```
+
+![členi finančního výboru, kteří nejsou členy zastupitelstva][fv-zhmp]
 
 ### Skripty
 
@@ -69,29 +72,28 @@ Pro snadnou a rychlou práci vytváříme sadu skriptů, která usnadní běžn�
 goverm find "DPP a. s."
 ```
 
+Instalace
+---------
+
+Instrukce jsou v [samostatném souboru](install.md).
+
 
 Roadmap
 -------
 
 1. Vytvořit [schéma](schema.md) (ontologii)
-1. Ukázková [workflow](workflow.md)
-1. Uživatelsky přívětivé rozhraní (sada skriptů a návodů).
+2. Ukázková [workflow](workflow.md) (best practise)
+3. Uživatelsky přívětivé rozhraní (sada skriptů, návodů, webová rozhraní).
+4. Agilně vylepšovat
 
-
-### TODO
-
-- upravit data ohledně městských firem - OP
-- časové určení vazby
-- sada skriptů v Pythonu na filtraci csv
-    - ořezávání titulů - DR
-    - doplnění bilých míst - DR
-    - vložení uzlu - DR
-    - vložení vazby - DR
+Vše je evidováno v rámci [issues](https://github.com/pirati-cz/goverMap/issues)
 
 
 [rhmplist]: files/rhmp-list.png
 [rhmpgraf]: files/rhmp-graph.png
 [zhmpgraf]: files/zhmp-graph.png
+[fv-zhmp]: files/fv-zhmp.png
+[fv+zhmp]: files/fv+zhmp.png
 [neo4j]: https://github.com/neo4j/neo4j
 [docker]: https://www.docker.com/
 [bisnode]: http://www.bisnode.cz/produkt/magnusweb/
