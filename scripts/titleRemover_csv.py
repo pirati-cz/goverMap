@@ -1,24 +1,41 @@
+#!/usr/bin/env python3
+
 # import re
 # regex = re.compile(r"^.*interfaceOpDataFile.*$", re.IGNORECASE)
 # for line in some_file:
 #     line = regex.sub("interfaceOpDataFile %s" % fileIn, line)
 #     # do something with the updated line
 
-
-import fileinput
 import re
 import csv
 import sys
+
+
 swap = True
+col_name = 'Jméno'
 
-# f = open('titleStrip_output','w')t
 
+def parse_args():
+    try:
+        inputName = sys.argv[1]
+    except IndexError:
+        print("Usage: %s <filename>" % sys.argv[0])
+        sys.exit()
 
-inFileName = sys.argv[1]
-outFileName = 'titles_removed.csv' #TODO allow command line input, overwrite, or relative name
+    pattern = '(.*)(\.csv)'
+    result = re.search(pattern, sys.argv[1])
 
-inFile = open(inFileName,'r')
-outFile = open(outFileName,'w')
+    if result == None:
+        raise Exception("Wrong filename")
+
+    outFileName = result.groups()[0] + '_removed.csv'
+
+    return sys.argv[1], outFileName
+
+filenames = parse_args()
+
+inFile = open(filenames[0], 'r')
+outFile = open(filenames[1], 'w')
 
 reg = re.compile(r'([\u00c0-\u01ffa-zA-Z\'\-]+)\s([\u00c0-\u01ffa-zA-Z\'\-]+)\b(?!\.)')
 
@@ -29,7 +46,7 @@ try:
 
     for row in reader:   # iterates the rows of the file in orders
 
-        name = row['Jméno'] #TODO make more general
+        name = row[col_name] #TODO make more general
         
         match = reg.search(name)
 
@@ -40,7 +57,7 @@ try:
         else:
           result = " ".join(match.groups())    # prints each row
 
-        row['Jméno'] = result
+        row[col_name] = result
 
         writer.writerow(row)
 
